@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>For My Angry Bird — SHAIK NOUSHEEN NAAZ ❤️</title>
+  <style>
+    /* Reset & base */
+    :root{
+      --bg1:#0f0c29;
+      --bg2:#302b63;
+      --accent:#ff6b9a;
+      --accent2:#ffb199;
+      --glass: rgba(255,255,255,0.08);
+      --glass-2: rgba(255,255,255,0.06);
+      --text: #f7f7fb;
+      --muted: #d7d7e0;
+      --card-border: rgba(255,255,255,0.12);
+      --heart: #ff6b9a;
+      --glass-blur: 10px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+    /* Particles & stars background for multiple sections */
+    .stars {
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:
+        radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.9), transparent 10%),
+        radial-gradient(1.5px 1.5px at 25% 60%, rgba(255,255,255,0.8), transparent 10%),
+        radial-gradient(2px 2px at 80% 40%, rgba(255,255,255,0.7), transparent 10%),
+        radial-gradient(1.2px 1.2px at 60% 10%, rgba(255,255,255,0.6), transparent 8%),
+        radial-gradient(1.5px 1.5px at 40% 80%, rgba(255,255,255,0.6), transparent 10%);
+      opacity:0.45;
+      mix-blend-mode:screen;
+      animation: twinkle 8s linear infinite;
+      filter: blur(.2px);
+    }
+    @keyframes twinkle{
+      0%{opacity:0.4}
+      50%{opacity:0.9}
+      100%{opacity:0.4}
+    }
+
+    /* Intro cinematic screen */
+    #intro{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:50;
+      padding:24px;
+      background: linear-gradient(180deg, rgba(3,0,36,0.75), rgba(48,43,99,0.35));
+      backdrop-filter: blur(6px);
+      transition:opacity .9s ease, transform .9s ease;
+    }
+    #intro.hidden{opacity:0; pointer-events:none; transform:scale(.98)}
+    .intro-card{
+      width:min(920px,100%);
+      max-width:920px;
+      border-radius:20px;
+      padding:34px;
+      position:relative;
+      overflow:hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.06);
+      display:flex;
+      gap:20px;
+      align-items:center;
+    }
+    .intro-left{
+      flex:1;
+      min-width:0;
+    }
+    .title{
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:0.6px;
+      margin:0 0 8px 0;
+      color:linear-gradient(90deg,#fff,#ffd1dc);
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .title .heart{font-size:26px;margin-left:6px}
+    .subtitle{color:var(--muted); margin:0 0 18px 0; font-size:16px}
+    .intro-msg{
+      font-size:15px;
+      line-height:1.6;
+      color: #f2eef6;
+      margin-bottom:22px;
+      white-space:pre-wrap;
+    }
+    .intro-actions{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 18px;
+      background: linear-gradient(90deg,var(--accent),var(--accent2));
+      color:white;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      box-shadow: 0 8px 20px rgba(255,107,154,0.18);
+      transform:translateY(0);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .btn:active{transform:translateY(2px)}
+    .btn-ghost{
+      padding:10px 14px;
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);
+      border-radius:12px;
+    }
+
+    .intro-right{
+      width:160px;
+      height:160px;
+      border-radius:18px;
+      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.06), transparent 10%), linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:8px;
+      border:1px solid rgba(255,255,255,0.04);
+    }
+    .avatar{
+      width:86px;height:86px;border-radius:50%;
+      background: conic-gradient(from 120deg, #ff6b9a, #ffb199, #ffd1dc);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;color:#fff;font-size:18px;
+      box-shadow: 0 6px 24px rgba(255,107,154,0.12);
+    }
+    .small{
+      font-size:12px;color:var(--muted)
+    }
+
+    /* main layout */
+    main{
+      position:relative;
+      z-index:1;
+      padding:110px 20px 160px 20px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    section{margin-bottom:44px; position:relative; z-index:2}
+    h2{
+      font-size:22px;
+      margin:0 0 16px 0;
+      letter-spacing:0.4px;
+    }
+
+    /* Glass card */
+    .glass{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--card-border);
+      border-radius:16px;
+      padding:22px;
+      backdrop-filter: blur(var(--glass-blur));
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+      color:var(--text);
+      position:relative;
+      overflow:hidden;
+    }
+    .glass .muted{color:var(--muted); font-size:15px; margin-bottom:8px}
+    .glass p{margin:0 0 12px 0; line-height:1.6; font-size:15px}
+    .glass .small-note{font-size:13px;color:#e9dfe6}
+
+    /* heart animation behind card */
+    .heart-behind{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      opacity:.12;
+      transform:translateY(-8px);
+    }
+    .heart-behind .heart-svg{
+      width:240px;height:240px; fill:var(--heart);
+      filter: blur(10px);
+      animation: heartbeat 2.2s ease-in-out infinite;
+      transform-origin:center;
+    }
+    @keyframes heartbeat{
+      0%{transform:scale(.94)}
+      20%{transform:scale(1)}
+      40%{transform:scale(.94)}
+      60%{transform:scale(1)}
+      100%{transform:scale(.94)}
+    }
+
+    /* popup/modal styles */
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(2,6,23,0.6);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:80;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .25s ease;
+    }
+    .modal-overlay.show{opacity:1; pointer-events:auto}
+    .modal{
+      max-width:520px;
+      width:calc(100% - 40px);
+      margin:20px;
+      border-radius:14px;
+      padding:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 20px 60px rgba(4,9,30,0.8);
+      position:relative;
+      transform:translateY(8px);
+      transition:transform .25s ease;
+    }
+    .modal-overlay.show .modal{transform:none}
+    .modal .close{
+      position:absolute;
+      right:12px;top:10px;
+      background:transparent;border:none;color:var(--muted);font-weight:700;
+      cursor:pointer;font-size:18px;
+    }
+    .modal h3{margin:6px 0 8px 0}
+    .modal p{color:var(--muted)}
+
+    /* Buttons row for popups */
+    .popup-buttons{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{background:rgba(255,255,255,0.03);padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);cursor:pointer;font-weight:600;color:var(--text)}
+
+    /* Romantic section */
+    .rom-card{display:flex;flex-direction:column;gap:10px}
+    .rom-row{display:flex;gap:12px;flex-wrap:wrap}
+    .tiny{font-size:13px;color:var(--muted)}
+
+    /* Special cinematic section */
+    .cinema{
+      position:relative;
+      border-radius:16px;
+      padding:36px 20px;
+      overflow:hidden;
+      min-height:380px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: radial-gradient(ellipse at 20% 10%, rgba(255,255,255,0.02), transparent 10%), linear-gradient(180deg, rgba(3,0,36,0.7), rgba(48,43,99,0.45));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .moon{
+      position:absolute;
+      right:8%;
+      top:6%;
+      width:140px;height:140px;border-radius:50%;
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.85), rgba(255,255,255,0.45) 12%, rgba(255,255,255,0.06) 30%), rgba(255,255,255,0.02);
+      filter: blur(2px);
+      opacity:.85;
+    }
+    .cinema .line{
+      font-size:22px;
+      color:var(--text);
+      text-align:center;
+      opacity:0;
+      transform:translateY(10px);
+      transition:opacity .9s ease, transform .9s ease;
+      letter-spacing:0.4px;
+      margin-bottom:12px;
+    }
+    .line.show{opacity:1; transform:none}
+    .final-line{font-size:30px; font-weight:800; color: #ffdbe6; text-shadow: 0 6px 20px rgba(255,107,154,0.2)}
+
+    /* Combined block after animation */
+    .cinema-card{
+      margin-top:20px;
+      padding:18px;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      max-width:720px;
+      text-align:center;
+      backdrop-filter: blur(8px);
+    }
+    .cine-lines{white-space:pre-wrap; line-height:1.6; color:var(--muted); font-size:15px}
+
+    /* Handwritten letter style */
+    .letter{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:22px;
+      font-family: "Segoe Script", "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+      font-size:16px;
+      color:#fff7f9;
+      line-height:1.7;
+      border:1px dashed rgba(255,255,255,0.04);
+    }
+    .letter .sig{margin-top:14px;font-weight:700;color:#ffd9e8}
+
+    /* Final emotional hero */
+    .hero{
+      border-radius:16px;
+      padding:26px;
+      min-height:260px;
+      position:relative;
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(48,43,99,0.25));
+      border:1px solid rgba(255,255,255,0.03);
+      display:flex;flex-direction:column;gap:12px;align-items:flex-start;justify-content:center;
+    }
+    .hero .big{font-size:20px}
+    .hero .giant{font-size:26px;font-weight:800;color:#ffdbe6}
+
+    /* final full screen modal */
+    .full-modal .modal{
+      max-width:880px;
+      width:calc(100% - 40px);
+      padding:40px;
+      border-radius:18px;
+      text-align:center;
+    }
+    .full-modal .modal h1{font-size:34px;margin:0 0 10px 0}
+    .full-modal .modal h2{font-size:22px;margin:8px 0 12px 0;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:720px){
+      .intro-card{flex-direction:column; gap:14px; padding:20px}
+      .intro-right{width:120px;height:120px}
+      .intro-left{padding:0}
+      .title{font-size:20px}
+      .intro-msg{font-size:14px}
+      main{padding-top:70px}
+      .cinema{min-height:320px;padding:24px}
+      .line{font-size:18px}
+      .final-line{font-size:22px}
+    }
+
+    /* floating small hearts for decoration */
+    .floating-heart{
+      position:absolute;
+      width:20px;height:20px;
+      transform:translate(-50%,-50%) rotate(-20deg);
+      opacity:0.95;
+      pointer-events:none;
+      filter: drop-shadow(0 6px 16px rgba(255,107,154,0.12));
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp{
+      0%{transform: translateY(0) scale(.9); opacity:0}
+      8%{opacity:1}
+      50%{transform: translateY(-60px) scale(1); opacity:1}
+      100%{transform: translateY(-140px) scale(.85); opacity:0}
+    }
+
+    /* small utilities */
+    .center{text-align:center}
+    .spacer{height:12px}
+  </style>
+</head>
+<body>
+
+  <!-- decorative stars layer -->
+  <div class="stars" aria-hidden="true"></div>
+
+  <!-- Intro cinematic opening -->
+  <div id="intro" role="dialog" aria-label="Opening message">
+    <div class="intro-card" role="document">
+      <div class="intro-left">
+        <div class="title">For My Angry Bird — <span style="color:#ffdbe6">SHAIK NOUSHEEN NAAZ ❤️</span></div>
+        <div class="subtitle">Nousheen... ek baar meri baat sun le please 🥺</div>
+        <div class="intro-msg">
+          Janta hoon tu mujhse bohot gussa hai...
+          aur shayad meri wajah se hurt bhi hui hai.
+
+          Main ye page isliye nahi bana raha ke tu turant mujhe maaf kar de.
+
+          Bas dil mein jo hai, woh tujhe kehna hai.
+        </div>
+        <div class="intro-actions">
+          <button class="btn" id="openMainBtn">Bas ek baar sun le meri jaan ❤️</button>
+          <button class="btn btn-ghost" id="openPopFunny">Ek chhota sa surprise</button>
+        </div>
+      </div>
+      <div class="intro-right">
+        <div class="avatar">N</div>
+        <div class="small">For: <strong>SHAIK NOUSHEEN NAAZ</strong></div>
+      </div>
+
+      <!-- subtle floating hearts in intro -->
+      <svg style="position:absolute;left:6%;top:10%;width:90px;height:90px;opacity:.16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 20s-6.716-4.35-9.054-7.133C-1.478 7.84 6.2 2.5 12 7.2c5.8-4.7 13.478.64 9.054 5.667C18.716 15.65 12 20 12 20z" fill="#ff6b9a"/>
+      </svg>
+    </div>
+  </div>
+
+  <main>
+    <!-- MAIN APOLOGY -->
+    <section id="main-apology" tabindex="-1">
+      <h2>Sorry Nousheen... ❤️</h2>
+      <div class="glass" style="overflow:visible;">
+        <div class="heart-behind" aria-hidden="true">
+          <!-- blurred heart svg -->
+          <svg class="heart-svg" viewBox="0 0 24 24">
+            <path d="M12 21s-7.5-4.7-10.3-8.1C-0.1 8.8 6.6 3 12 7.5 17.4 3 24.1 8.8 22.3 12.9 19.5 16.3 12 21 12 21z"></path>
+          </svg>
+        </div>
+
+        <div style="position:relative; z-index:2;">
+          <p class="muted">Sabse pehle... I'm really really sorry meri jaan.</p>
+          <p>
+          Janta hoon sirf Sorry bolne se sab kuch theek nahi ho jata.
+          </p>
+          <p>
+          Jo hua usse main change nahi kar sakta,
+          lekin kaash main us waqt thoda ruk kar soch leta,
+          teri feelings ko samajh leta,
+          aur tujhe hurt hone ki wajah na deta.
+          </p>
+          <p>
+          Meri galti thi...
+          aur main uski koi safai nahi dena chahta.
+          </p>
+          <p class="small-note">Bas itna kehna hai ke mujhe dil se afsos hai.</p>
+
+          <div style="height:16px"></div>
+
+          <div class="popup-buttons">
+            <button class="chip" data-modal="modal1">Jo dil mein hai ❤️</button>
+            <button class="chip" data-modal="modal2">Sorry bolne ki wajah 🥺</button>
+            <button class="chip" data-modal="modal3">Mera promise 🤞❤️</button>
+            <button class="chip" data-modal="modal4">Angry Bird ke liye 🐥❤️</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMOTIONAL SECTION -->
+    <section id="emotional">
+      <h2>Ek baat dil se ❤️</h2>
+      <div class="glass">
+        <p>Tu mujhse naraz hai, gussa hai... I understand.</p>
+        <p>Aur honestly, tera gussa bhi mujhe deserve hai.</p>
+        <p>
+        Lekin meri jaan,
+        main kabhi nahi chahta tha ke meri wajah se tere dil ko itna bura lage.
+        </p>
+        <p>
+        Kabhi kabhi insaan galti karne ke baad samajhta hai ke uske actions ka saamne wale par kitna effect hua.
+        </p>
+        <p>Mujhe bhi ab realize ho raha hai.</p>
+        <p>I wish main woh moment wapas la sakta... main sab kuch differently karta.</p>
+      </div>
+    </section>
+
+    <!-- ROMANTIC SECTION -->
+    <section id="romantic">
+      <h2>Tu Mere Liye Kya Hai ❤️</h2>
+      <div class="glass rom-card">
+        <p>
+        Shayad main har baar words mein explain nahi kar pata...
+        </p>
+        <p>
+        Lekin tu mere liye bohot special hai.
+        </p>
+        <p>
+        Teri ek smile mera mood change kar sakti hai.
+        Teri ek baat mere din ko better bana sakti hai.
+        </p>
+        <p>
+        Aur jab tu mujhse naraz hoti hai na...
+        sach mein sab kuch thoda empty empty sa lagta hai.
+        </p>
+        <p>Tere bina sab kuch adhura sa lagta hai.</p>
+      </div>
+    </section>
+
+    <!-- SPECIAL CINEMATIC SECTION -->
+    <section id="special-cinema">
+      <h2 class="center">Chalo mohabbat bacha lete hain — Special</h2>
+      <div class="cinema" id="cinema">
+        <div class="moon" aria-hidden="true"></div>
+
+        <div id="cine-msg" style="z-index:3; text-align:center;">
+          <div class="line" id="line1">Ek dusre ko manaa lete hain...</div>
+          <div class="line" id="line2">Chalo mohabbat bacha lete hain... ❤️</div>
+          <div class="line" id="line3">Har galat fehmi ko mitta dete hain...</div>
+          <div class="line" id="line4">Chalo mohabbat bacha lete hain... ❤️</div>
+          <div class="line" id="line5">Is nafrat ko kanhi dafna dete hain...</div>
+          <div class="line" id="line6">Chalo mohabbat bacha lete hain... ❤️</div>
+          <div class="line" id="line7">Apne har waade nibha lete hain...</div>
+          <div class="line final-line" id="line8">Chalo mohabbat bacha lete hain.!! ❤️🥺</div>
+        </div>
+
+        <div style="position:absolute;left:10px;bottom:10px;z-index:2;">
+          <!-- subtle floating hearts -->
+          <svg class="floating-heart" style="left:12px; animation-duration:6s;" viewBox="0 0 24 24" fill="#ff6b9a"><path d="M12 21s-7.5-4.7-10.3-8.1C-0.1 8.8 6.6 3 12 7.5 17.4 3 24.1 8.8 22.3 12.9 19.5 16.3 12 21 12 21z"/></svg>
+          <svg class="floating-heart" style="left:56px; animation-duration:7s; animation-delay:1s" viewBox="0 0 24 24" fill="#ff8aa8"><path d="M12 21s-7.5-4.7-10.3-8.1C-0.1 8.8 6.6 3 12 7.5 17.4 3 24.1 8.8 22.3 12.9 19.5 16.3 12 21 12 21z"/></svg>
+        </div>
+
+      </div>
+
+      <div class="cinema-card center" id="cine-final" style="display:none;">
+        <div class="cine-lines">
+Ek dusre ko manaa lete hain,
+Chalo mohabbat bacha lete hain,
+
+Har galat fehmi ko mitta dete hain,
+Chalo mohabbat bacha lete hain,
+
+Is nafrat ko kanhi dafna dete hain,
+Chalo mohabbat bacha lete hain,
+
+Apne har waade nibha lete hain,
+Chalo mohabbat bacha lete hain.!! ❤️
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div style="max-width:720px;margin:0 auto;color:var(--muted);line-height:1.6;text-align:left;">
+          <p><strong>Bas itna sa chahta hoon meri jaan...</strong></p>
+          <p>Jo kuch bhi hua, usse hum seekh lete hain.</p>
+          <p>Jo galat fehmiyan hain, unhe baat karke mita dete hain.</p>
+          <p>Jo gussa hai, thoda thoda karke khatam kar dete hain.</p>
+          <p><strong>Aur jo mohabbat hai na...</strong></p>
+          <p>Usse haarne nahi dete. ❤️</p>
+
+          <div style="height:10px"></div>
+
+          <p><em>Chalo phir se ek dusre ko samajhne ki koshish karte hain...</em></p>
+          <p><strong>Chalo mohabbat bacha lete hain. ❤️</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LETTER SECTION -->
+    <section id="letter">
+      <h2>Ek chota sa letter tere naam... 💌</h2>
+      <div class="letter">
+        <div style="font-size:15px; color:#fff9fb; line-height:1.7; white-space:pre-wrap;">
+Dear Nousheen,
+
+Pata nahi ye sab padh ke tu smile karegi,
+gussa karegi,
+ya phir mujhe aur daantegi 😂🥺
+
+Lekin jo bhi karegi,
+bas meri baat ek baar dil se padhna.
+
+Main maanta hoon mujhse galti hui.
+
+Main perfect boyfriend nahi hoon.
+
+Kabhi kabhi stupid decisions le leta hoon,
+kabhi bina soche kuch kar deta hoon,
+aur kabhi tujhe woh importance nahi de pata jo tu deserve karti hai.
+
+Lekin ek cheez sach hai...
+
+Main tujhe genuinely care karta hoon.
+
+Aur jab mujhe pata chalta hai ke meri wajah se tu hurt hui,
+toh mujhe khud bhi bohot bura lagta hai.
+
+I am really sorry, meri jaan. ❤️
+        </div>
+
+        <div class="sig">— Tera, (Naam)</div>
+      </div>
+    </section>
+
+    <!-- IF I COULD TURN BACK TIME -->
+    <section id="timeback">
+      <h2>Agar waqt wapas aa sakta...</h2>
+      <div class="glass">
+        <p>
+        Agar main waqt wapas le ja sakta na,
+        toh main us moment ko change kar deta.
+        </p>
+        <p>
+        Main pehle teri baat sunta.
+        Phir samajhta.
+        Phir kuch karta.
+        </p>
+        <p>
+        Kaash har galti karne se pehle insaan ko pata hota ke saamne wale ko kitna hurt hoga...
+        </p>
+        <p>
+        Lekin ab jo ho gaya usse change nahi kar sakta.
+        Bas aage better kar sakta hoon.
+        </p>
+        <p><strong>Kal ko change nahi kar sakta, lekin aaj se better banne ki koshish zaroor kar sakta hoon.</strong></p>
+      </div>
+    </section>
+
+    <!-- FINAL EMOTIONAL SECTION -->
+    <section id="final-hero">
+      <h2 class="center">Bas ab maan bhi ja meri jaan ❤️</h2>
+      <div class="hero">
+        <div style="position:absolute;right:12px;top:12px;opacity:.14">
+          <svg width="160" height="160" viewBox="0 0 24 24" fill="#ffd1e0"><path d="M12 21s-7.5-4.7-10.3-8.1C-0.1 8.8 6.6 3 12 7.5 17.4 3 24.1 8.8 22.3 12.9 19.5 16.3 12 21 12 21z"/></svg>
+        </div>
+
+        <div class="big">Kitna gussa karegi ab? 🥺</div>
+        <p class="tiny">Mujhe pata hai tu hurt hai. Mujhe pata hai Sorry enough nahi hai.</p>
+        <p class="tiny">Isliye main tujhe force nahi karunga.</p>
+        <p class="tiny">Jab tera dil kare baat karna... main yahin hoon.</p>
+
+        <div style="height:8px"></div>
+
+        <div class="giant">Bas ab gussa khamake maan bhi ja meri jaan ❤️🥺</div>
+
+        <div style="height:8px"></div>
+
+        <div class="muted">Tere bina sab kuch adhura sa lagta hai.</div>
+
+        <div style="height:8px"></div>
+
+        <div class="tiny">Please smile kar de thoda... tera Angry Bird wala gussa bhi cute hai 😂🐥❤️</div>
+
+        <div style="height:12px"></div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="btn" id="lastSorryBtn">Last Sorry ❤️</button>
+          <a class="btn btn-ghost" href="#cinema" style="text-decoration:none;color:var(--muted);display:inline-flex;align-items:center">Dekho woh cinematic lines</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- POPUP MODALS (1-4) -->
+  <div class="modal-overlay" id="modal1" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Jo dil mein hai">
+      <button class="close" data-close>&times;</button>
+      <h3>Jo dil mein hai ❤️</h3>
+      <p>Bas ab gussa khamake maan bhi ja meri jaan 🥺❤️</p>
+      <p>Tere bina sab kuch adhura sa lagta hai.</p>
+      <p>Lekin main ye bhi samajhta hoon ke tujhe hurt hone ke baad time chahiye.</p>
+      <p>Isliye main tujhe force nahi karunga.</p>
+      <p>Bas jab tera gussa thoda kam ho... please meri baat ek baar sun lena.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal2" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Sorry bolne ki wajah">
+      <button class="close" data-close>&times;</button>
+      <h3>Sorry bolne ki wajah 🥺</h3>
+      <p>Main sirf isliye sorry nahi bol raha ke tu mujhse baat kare.</p>
+      <p>Main sorry isliye bol raha hoon kyunki mujhe genuinely bura lag raha hai ke meri wajah se meri jaan hurt hui.</p>
+      <p>Teri feelings mere liye important hain.</p>
+      <p>Aur mujhe unka aur zyada khayal rakhna chahiye tha.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal3" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Mera promise">
+      <button class="close" data-close>&times;</button>
+      <h3>Mera promise 🤞❤️</h3>
+      <p>Main ye promise nahi karunga ke main kabhi galti nahi karunga.</p>
+      <p>Lekin haan... main ye zaroor promise karta hoon ke apni galti se seekhunga.</p>
+      <p>Tujhe better samajhne ki koshish karunga. Teri baat dhyan se sununga. Aur kabhi jaan bujhkar tujhe hurt nahi karna chahta.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal4" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Angry Bird ke liye">
+      <button class="close" data-close>&times;</button>
+      <h3>Angry Bird ke liye 🐥❤️</h3>
+      <p>Madam ji... gussa thoda kam karo na 😂🥺</p>
+      <p>Pata hai tum bohot gusse mein ho, aur haan... galti meri thi.</p>
+      <p>Lekin ab kitna gussa karogi meri jaan? 😭❤️</p>
+      <p>Ek choti si smile kar do... please?</p>
+    </div>
+  </div>
+
+  <!-- Full screen final modal -->
+  <div class="modal-overlay full-modal" id="finalModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Final Sorry">
+      <button class="close" data-close>&times;</button>
+      <h1>SHAIK NOUSHEEN NAAZ ❤️</h1>
+      <h2>Sorry meri jaan.</h2>
+
+      <p style="color:var(--muted); margin-top:8px;">
+      Na koi excuse...<br>
+      na koi justification...
+      </p>
+
+      <h2 style="margin-top:14px; color:#ffdbe6">I'M SORRY. ❤️</h2>
+
+      <p style="color:var(--muted); margin-top:10px;">
+      Tu jitna time lena chahe le... main samajhunga.
+      Bas jab tera gussa thoda kam ho, ek baar smile kar dena.
+      Because your smile is honestly my favourite thing. ❤️
+      </p>
+
+      <p style="font-size:17px; margin-top:14px; font-weight:700;">Love you, Angry Bird. 🐥❤️</p>
+
+      <div style="height:6px"></div>
+
+      <p style="font-size:20px; color:#ffdbe6; font-weight:800;">Chalo mohabbat bacha lete hain. ❤️</p>
+    </div>
+  </div>
+
+  <script>
+    // Utility: prevent background scroll when modal open
+    let openModals = 0;
+    function lockScroll(){
+      document.body.style.overflow = 'hidden';
+    }
+    function unlockScroll(){
+      document.body.style.overflow = '';
+    }
+
+    // Modal open/close logic
+    function openModal(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.classList.add('show');
+      el.setAttribute('aria-hidden','false');
+      openModals++;
+      lockScroll();
+    }
+    function closeModal(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.classList.remove('show');
+      el.setAttribute('aria-hidden','true');
+      openModals = Math.max(0, openModals-1);
+      if(openModals===0) unlockScroll();
+    }
+
+    // Attach popup buttons
+    document.querySelectorAll('[data-modal]').forEach(btn=>{
+      btn.addEventListener('click', e=>{
+        const m = btn.getAttribute('data-modal');
+        openModal(m);
+      });
+    });
+
+    // Close buttons
+    document.querySelectorAll('.modal .close').forEach(b=>{
+      b.addEventListener('click', e=>{
+        const overlay = e.target.closest('.modal-overlay');
+        if(overlay) closeModal(overlay.id);
+      });
+    });
+
+    // Close on overlay click & ESC
+    document.querySelectorAll('.modal-overlay').forEach(overlay=>{
+      overlay.addEventListener('click', e=>{
+        if(e.target === overlay){
+          closeModal(overlay.id);
+        }
+      });
+    });
+    window.addEventListener('keydown', e=>{
+      if(e.key === 'Escape'){
+        document.querySelectorAll('.modal-overlay.show').forEach(o=>{
+          closeModal(o.id);
+        });
+      }
+    });
+
+    // Intro -> main transition
+    const intro = document.getElementById('intro');
+    const openMainBtn = document.getElementById('openMainBtn');
+    openMainBtn.addEventListener('click', ()=> {
+      // smooth hide intro and reveal main content
+      intro.classList.add('hidden');
+      setTimeout(()=> {
+        intro.style.display = 'none';
+        // focus main apology for accessibility
+        const main = document.getElementById('main-apology');
+        main.scrollIntoView({behavior:'smooth'});
+        main.focus();
+      }, 820);
+    });
+
+    // helper: quick tiny funny popup from intro ghost button
+    document.getElementById('openPopFunny').addEventListener('click', ()=>{
+      openModal('modal4');
+    });
+
+    // Last Sorry full modal
+    document.getElementById('lastSorryBtn').addEventListener('click', ()=>{
+      openModal('finalModal');
+    });
+
+    // Prevent background scroll if a modal opens programmatically also
+    const observer = new MutationObserver(()=>{});
+    observer.observe(document.body, {childList:true, subtree:true});
+
+    // CINEMATIC reveal sequence: show lines one-by-one
+    const lines = [
+      document.getElementById('line1'),
+      document.getElementById('line2'),
+      document.getElementById('line3'),
+      document.getElementById('line4'),
+      document.getElementById('line5'),
+      document.getElementById('line6'),
+      document.getElementById('line7'),
+      document.getElementById('line8'),
+    ];
+
+    function showCinematic(){
+      const delayBase = 900; // ms
+      lines.forEach((ln, idx)=>{
+        setTimeout(()=>{
+          ln.classList.add('show');
+        }, idx * delayBase + 300);
+      });
+      // show combined card after full sequence
+      setTimeout(()=>{
+        document.getElementById('cine-final').style.display = 'block';
+        document.getElementById('cine-final').scrollIntoView({behavior:'smooth'});
+      }, lines.length * delayBase + 500);
+    }
+
+    // Start cinematic when cinema section is in viewport
+    let cinemaStarted = false;
+    function onScroll(){
+      if(cinemaStarted) return;
+      const el = document.getElementById('cinema');
+      const rect = el.getBoundingClientRect();
+      if(rect.top < window.innerHeight * 0.75){
+        cinemaStarted = true;
+        showCinematic();
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+    // if already in view on load
+    onScroll();
+
+    // small decorative random hearts spawn in background for life
+    (function spawnHearts(){
+      // spawn hearts inside body occasionally
+      function create(){
+        const h = document.createElementNS('http://www.w3.org/2000/svg','svg');
+        h.setAttribute('viewBox','0 0 24 24');
+        h.style.position='fixed';
+        const size = Math.random()*18 + 18;
+        h.style.width = size+'px';
+        h.style.height = size+'px';
+        h.style.left = (Math.random()*90 + 5) + '%';
+        h.style.bottom = '-10px';
+        h.style.zIndex = 0;
+        h.style.opacity = 0.95;
+        h.style.pointerEvents = 'none';
+        h.style.transform = `rotate(${Math.random()*50-25}deg)`;
+        h.style.transition = 'transform 6s linear, opacity 6s linear, bottom 6s linear';
+        const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+        path.setAttribute('d','M12 21s-7.5-4.7-10.3-8.1C-0.1 8.8 6.6 3 12 7.5 17.4 3 24.1 8.8 22.3 12.9 19.5 16.3 12 21 12 21z');
+        path.setAttribute('fill', ['#ff8aa8','#ff6b9a','#ffd1dc'][Math.floor(Math.random()*3)]);
+        h.appendChild(path);
+        document.body.appendChild(h);
+        setTimeout(()=> {
+          h.style.bottom = Math.random()*40 + 70 + '%';
+          h.style.opacity = 0;
+          h.style.transform = `translateY(-40px) rotate(${Math.random()*90-45}deg) scale(.9)`;
+        }, 40);
+        setTimeout(()=> h.remove(), 7000);
+      }
+      setInterval(()=> {
+        if(Math.random() > 0.6) create();
+      }, 900);
+    })();
+
+    // Accessibility: make modals focus trap basic (simple)
+    document.querySelectorAll('.modal-overlay').forEach(overlay=>{
+      overlay.addEventListener('keydown', e=>{
+        if(e.key === 'Tab'){
+          const focusables = overlay.querySelectorAll('button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])');
+          if(focusables.length === 0) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length-1];
+          if(e.shiftKey && document.activeElement === first){
+            e.preventDefault();
+            last.focus();
+          } else if(!e.shiftKey && document.activeElement === last){
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
+    });
+
+    // ensure all modals hidden initially
+    document.querySelectorAll('.modal-overlay').forEach(o=>{
+      o.classList.remove('show');
+      o.setAttribute('aria-hidden','true');
+    });
+
+    // Make sure opening intro button accessible via keyboard
+    openMainBtn.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){ openMainBtn.click() }
+    });
+
+    // prevent weird focus outlines on mouse click
+    document.body.addEventListener('mousedown', ()=> document.body.classList.add('using-mouse'));
+    document.body.addEventListener('keydown', ()=> document.body.classList.remove('using-mouse'));
+
+    // small improvement: when a modal is shown, focus its close button
+    const modals = document.querySelectorAll('.modal-overlay');
+    modals.forEach(m=>{
+      const obs = new MutationObserver(()=> {
+        if(m.classList.contains('show')){
+          const focusBtn = m.querySelector('.close') || m.querySelector('button');
+          if(focusBtn) focusBtn.focus();
+        }
+      });
+      obs.observe(m, {attributes:true, attributeFilter:['class']});
+    });
+
+    // final: ensure clicks on "Dekho woh cinematic lines" bring into view and start animation
+    document.querySelectorAll('a[href="#cinema"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        document.getElementById('cinema').scrollIntoView({behavior:'smooth'});
+        // start if not started
+        if(!cinemaStarted){
+          cinemaStarted = true;
+          setTimeout(showCinematic, 400);
+        }
+      })
+    });
+
+    // Quick console-free guard
+    console.log = function(){};
+  </script>
+</body>
+</html>
